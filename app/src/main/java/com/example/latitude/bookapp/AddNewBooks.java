@@ -1,9 +1,12 @@
 package com.example.latitude.bookapp;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -11,6 +14,8 @@ public class AddNewBooks extends AppCompatActivity {
     private EditText name, author, content;
     private ImageView image;
     MyDatabaseHelper data;
+    private FloatingActionButton button;
+   private int Image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,21 @@ public class AddNewBooks extends AppCompatActivity {
         author =(EditText) findViewById(R.id.addTacGia);
         content =(EditText) findViewById(R.id.addNoiDung);
         image =(ImageView) findViewById(R.id.addImage);
+        button = (FloatingActionButton) findViewById(R.id.fab) ;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddNewBooks.this,Image.class);
+                startActivity(intent);
+               // finish();
+            }
+        });
+
+        Intent intent= getIntent();
+        Image= intent.getIntExtra("IDImage",R.mipmap.avata);
+        image.setImageResource(Image);
+
+
         data= new MyDatabaseHelper(AddNewBooks.this,"BooksManager.sqlite",null,1);
     }
 
@@ -55,7 +75,7 @@ public class AddNewBooks extends AppCompatActivity {
         String  Name = name.getText().toString();
         String Author = author.getText().toString();
         String   Content = content.getText().toString();
-        int Images= R.mipmap.avata;
+        int Images= Image;
 
 
 
@@ -84,8 +104,11 @@ public class AddNewBooks extends AppCompatActivity {
 
     }
 
-
-
-
-
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Intent intent= getIntent();
+        Image= intent.getIntExtra("IDImage",R.mipmap.avata);
+        image.setImageResource(Image);
+    }
 }

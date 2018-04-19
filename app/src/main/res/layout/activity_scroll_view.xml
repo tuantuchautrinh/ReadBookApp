@@ -33,7 +33,7 @@
      android:scrollbars = "vertical"
      android:textSize="25dp"
      android:layout_height="wrap_content"
-     android:text="@string/content"/>
+     android:text=""/>
 
  </ScrollView>
 </LinearLayout >

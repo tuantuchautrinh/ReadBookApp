@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BookApp</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="TenSach">Tên sách </string>
+    <string name="TenTacGia">Tên tác giả</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

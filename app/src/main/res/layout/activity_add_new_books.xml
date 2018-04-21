@@ -48,6 +48,7 @@
 
             <EditText
                 android:id="@+id/addTen"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Hãy nhập tên sách mới"
@@ -84,6 +85,7 @@
 
             <EditText
                 android:id="@+id/addNoiDung"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Hãy nhập nội dung mới"

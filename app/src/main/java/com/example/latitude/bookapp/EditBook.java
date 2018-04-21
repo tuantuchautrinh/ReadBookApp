@@ -10,23 +10,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class AddNewBooks extends AppCompatActivity {
+public class EditBook extends AppCompatActivity {
     private EditText name, author, content;
     private ImageView image;
     MyDatabaseHelper data;
     private FloatingActionButton button;
-   private int Image;
-
+    private int Image,Id;
+    private Book book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_books);
-        if(getSupportActionBar()!=null)
-        {
+        setContentView(R.layout.activity_edit_book);
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        Intent intent= getIntent();
+
+        Image= intent.getIntExtra("IDImage",R.mipmap.avata);
+//        image.setImageResource(Image);
+        Id=intent.getIntExtra("Id",1);
+
         name =(EditText) findViewById(R.id.addTen);
         author =(EditText) findViewById(R.id.addTacGia);
         content =(EditText) findViewById(R.id.addNoiDung);
@@ -35,20 +36,24 @@ public class AddNewBooks extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddNewBooks.this,Image.class);
+                Intent intent = new Intent(EditBook.this,Image2.class);
+                int MaSach=book.getID();
+                intent.putExtra("Id",MaSach);
                 startActivity(intent);
-                finish();
+                 finish();
             }
         });
 
-        Intent intent= getIntent();
-        Image= intent.getIntExtra("IDImage",R.mipmap.avata);
-        image.setImageResource(Image);
+        data= new MyDatabaseHelper(EditBook.this,"BooksManager.sqlite",null,1);
 
+        book=data.getBook(Id);
+        name.setText(book.getName());
+        author.setText(book.getAuthor());
+        content.setText(book.getContext());
+        Image=book.getImage();
+        image.setImageResource(book.getImage());
 
-        data= new MyDatabaseHelper(AddNewBooks.this,"BooksManager.sqlite",null,1);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_check,menu);
@@ -62,7 +67,7 @@ public class AddNewBooks extends AppCompatActivity {
 
             case R.id.check:
 
-                        addBook();
+                UpdateBook();
 
                 break;
         }
@@ -70,7 +75,7 @@ public class AddNewBooks extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addBook()
+    public void UpdateBook()
     {
         String  Name = name.getText().toString();
         String Author = author.getText().toString();
@@ -82,7 +87,7 @@ public class AddNewBooks extends AppCompatActivity {
         //Images = image;
         if(Author.isEmpty()==false && Name.isEmpty()==false)
         {
-            data.Insert(Name,Author,Content,Images);
+            data.Update(Name,Author,Content,Images,Id);
             finish();
 
         }
@@ -107,8 +112,19 @@ public class AddNewBooks extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
+
         Intent intent= getIntent();
-        Image= intent.getIntExtra("IDImage",R.mipmap.avata);
-        image.setImageResource(Image);
+
+
+//        image.setImageResource(Image);
+        int MaSach=intent.getIntExtra("Id",1);
+
+        book=data.getBook(MaSach);
+        name.setText(book.getName());
+        author.setText(book.getAuthor());
+        content.setText(book.getContext());
+        Image=book.getImage();
+        image.setImageResource(book.getImage());
+
     }
 }

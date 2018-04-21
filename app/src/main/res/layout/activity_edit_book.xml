@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddNewBooks">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="200dp">
+        <ImageView
+            android:id="@+id/addImage"
+            android:src="@mipmap/avata"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab"
+
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@android:drawable/ic_input_add" />
+
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Tên sách:"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/addTen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hãy nhập tên sách mới"
+                android:textColorHint="@color/colorGray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Tên tác giả:"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/addTacGia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hãy nhập tên tác giả mới"
+                android:textColorHint="@color/colorGray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nội dung:" />
+
+            <EditText
+                android:id="@+id/addNoiDung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hãy nhập nội dung mới"
+
+                android:textColorHint="@color/colorGray" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

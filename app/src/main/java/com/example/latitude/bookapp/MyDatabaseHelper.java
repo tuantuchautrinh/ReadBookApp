@@ -136,5 +136,27 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper {
         return false;
 
     }
+    public Book getBook(int Id)
+    {
+        Cursor cursor=getData("select * from Book where Id='"+Id+"'");
+        cursor.moveToLast();
+        Book book= new Book(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4));
+        return book;
+    }
+
+
+    public void Update(String Name,String Author,String Content,int Images,int Id)
+
+    {
+        String query = "Update  Book SET Name='"+Name+"', Author='"+Author+"', Content='"+Content+"', Image='"+Images+"' where Id='"+Id+"'";
+        queryData(query);
+    }
+    public void Delete(int Id)
+
+    {
+        String query = "DELETE FROM Book WHERE ID='"+Id+"'";
+        queryData(query);
+    }
+
 
 }

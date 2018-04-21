@@ -46,14 +46,16 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper {
         String query5="INSERT INTO Book ( Name, Author, Content, Image ) VALUES ( 'Harry pỏter', 'abc', 'Content', '"+R.mipmap.avata+"' );";
         String query6="INSERT INTO Book ( Name, Author, Content, Image ) VALUES ( 'Harry pỏter', 'abc', 'Content', '"+R.mipmap.avata+"' );";
         String query7="INSERT INTO Book ( Name, Author, Content, Image ) VALUES ( 'Harry pỏter', 'abc', 'Content', '"+R.mipmap.avata+"' );";
-
+        String query8="CREATE TABLE IF NOT EXISTS TaiKhoan(ID INTEGER PRIMARY KEY AUTOINCREMENT,Email TEXT not null unique, PASSWORD TEXT);";
+        String query9="INSERT INTO  TaiKhoan(Email,PASSWORD) VALUES('user@gmail.com','Admin');";
+        String query12="INSERT INTO  TaiKhoan(Email,PASSWORD) VALUES('User1@gmail.com','123123');";
+        String query11="INSERT INTO  TaiKhoan(Email,PASSWORD) VALUES('User2@gmail.com','123123');";
         db.execSQL(query);
-       /* db.execSQL(query2);
-        db.execSQL(query3);
-        db.execSQL(query4);
-        db.execSQL(query5);
-        db.execSQL(query6);
-        db.execSQL(query7);*/
+        db.execSQL(query8);
+        db.execSQL(query9);
+        db.execSQL(query12);
+        db.execSQL(query11);
+
     }
 
     @Override
@@ -120,6 +122,19 @@ public  class MyDatabaseHelper extends SQLiteOpenHelper {
 
         }
         return list;
+    }
+
+    public boolean CheckUser (String Email, String password){
+        String query = "select *  from TaiKhoan where Email='"+Email+"' and PassWord='"+password+"'";
+        Cursor cursor = getData(query);
+        int cursorCount = cursor.getCount();
+//        database.close();
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+
     }
 
 }

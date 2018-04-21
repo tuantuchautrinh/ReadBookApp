@@ -9,11 +9,8 @@
         android:src="@mipmap/avata"
         android:layout_marginLeft="10dp"
         android:layout_width="200dp"
-<<<<<<< HEAD
+
         android:layout_height="200dp" />
-=======
-        android:layout_height="match_parent" />
->>>>>>> 21564b864607afd227a650a7c0841bfde35144b1
 
     <LinearLayout
         android:orientation="vertical"
